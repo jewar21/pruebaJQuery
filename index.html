@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" data-auto-replace-svg="nest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+
+
+    <link rel="stylesheet" href="css/main.css" />
+    
+    <title>jQuery</title>
+</head>
+<body>
+    <div id="userRegister" class="ctn-form">
+        <h2>Registrate aquí y enterate de todas las ofertas</h2>
+        <form id="formDatos" method="post">
+            <div class="boxImputForm clearfix">
+                <div class="clearfix">
+                    <div class="col-sm-6 clearfix">
+                        <div class="form-group">
+                            <i class="fas fa-user"></i>
+                            <input type="text" class="form-control" placeholder="Nombre" data-bind="value: name" name="name">
+                        </div>
+                    </div>
+                    <div class="col-sm-6 left-bar clearfix">
+                        <div class="form-group">
+                            <i class="fas fa-user"></i>
+                            <input type="text" class="form-control" placeholder="Apellido" data-bind="value: LastName" name="lastName">
+                        </div>
+                    </div>
+                </div>
+                <div class="hrStyle clearfix"></div>
+                <div class="clearfix">
+                    <div class="col-sm-6 clearfix">
+                        <div class="form-group">
+                            <i class="fas fa-envelope"></i>
+                            <input type="text" class="form-control" placeholder="E-mail" data-bind="value: Email" name="email">
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <div class="col-sm-6 left-bar clearfix">
+                        <div class="form-group">
+                            <i class="fas fa-phone"></i>
+                            <input type="text" class="form-control" placeholder="Teléfono" data-bind="value: Phone" name="phone">
+                        </div>
+                    </div>
+                </div>
+                <div class="hrStyle clearfix"></div>
+            </div>
+            <div class="mb-3 form-check checkbox">
+                <input type="checkbox" data-bind="checked: Terms" name="terms" id="terms">
+                <label>
+                    Soy mayor de edad y acepto las <a href="/Files/PDFs/politica-privacidad-hotsale-2019.pdf" target="_blank">Políticas de privacidad</a>,
+                    los <a href="/Files/PDFs/terminos-condiciones-hotsale-2019.pdf" target="_blank">términos y condiciones</a> del protal.
+                </label>
+            </div>
+            <span class="error">Debes aceptar todos los términos.</span>
+            <div class="col-sm-6 col-md-5 group-btn">
+                <button type="submit" class="btn btn-primary btnEnviar" >Registrar</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        $(document).ready(() => {
+            $('.error').hide();
+            $('#formDatos').submit(function(event) {
+                event.preventDefault();
+                $('.error').hide();
+                let check = $(this).find(':checkbox');
+                console.log(check.is(':checked'));
+                if (!check.is(':checked')) {
+                    $('.error').show();
+                }
+
+            });
+            $('#formDatos').validate({
+                rules: {
+                    name: {
+                        required: true,
+                        minlength: 2
+                    },
+                    lastName: {
+                        required: true,
+                        minlength: 2
+                    },
+                    email: {
+                        required: true,
+                        email: true
+                    },
+                    phone: {
+                        required: true,
+                        number: true
+                    },
+                    // terms: {
+                    //     required: "#terms:checked",
+                    // }
+                },
+                messages: {
+                    name: {
+                        required: "El Nombre es obligatorio.",
+                        minlength: "Debe ingresar al menos dos caracteres."
+                    },
+                    lastName: {
+                        required: "El Apellido es obligatorio.",
+                    },
+                    email: {
+                        required: "El Email es obligatorio.",
+                        email: "El formato válido para email es: name@prueba.com"
+                    },
+                    phone: {
+                        required: "El número es Obligatorio",
+                        number: "Solo se admiten caracteres numéricos"
+                    },
+                    // terms:  "Debes aceptar todos los términos."
+                }
+            });
+        });
+    </script>
+</body>
+</html>

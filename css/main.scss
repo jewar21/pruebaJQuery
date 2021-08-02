@@ -1,0 +1,48 @@
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+#userRegister {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    h {
+        align-self: center;
+    }
+    .form-group {
+        display: block;
+        flex-direction: row;
+        width: 600px;
+        padding: 10px;
+        i {
+            font-size: 20px;
+            align-self: center;
+            margin-right: 10px;
+        }
+        input {
+            width: 100%;
+            display: block;
+        }
+        input::before {
+            font-family: "Font Awesome 5 Free"; 
+            font-weight: 900; 
+            content: "\f406";
+        }
+        label.error {
+            color: red;
+            display: block;
+            font-size: 1rem;
+            margin-top: 5px;
+        }
+        input.error {
+            border: 1px dashed red;
+            color: red;
+        }
+    }
+    span {
+        color: red;
+    }
+}
